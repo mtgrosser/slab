@@ -1,0 +1,3 @@
+module Slab
+
+end
