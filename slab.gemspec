@@ -12,12 +12,10 @@ Gem::Specification.new do |s|
   s.email       = ['mtgrosser@gmx.net']
   s.homepage    = 'http://rubygems.org/gems/slab'
   s.summary     = 'Core extensions to build Rails upon'
-  s.description = ''
+  s.description = 'Extensions for Ruby base classes'
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "README.md"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "activesupport", "~> 3.2.3"
-
-  s.add_development_dependency "sqlite3"
 end
