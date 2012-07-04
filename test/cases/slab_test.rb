@@ -138,7 +138,9 @@ class SlabTest < ActiveSupport::TestCase
   end
 
   test 'string extension: random' do
-    assert /\A\w+\z/.match(String.random(20))
+    assert_match /\A\w+\z/, String.random(200)
+    assert_equal 12, String.random.size
+    assert_match /\A[f0b4r]+\z/, String.random(1234, 'f0b4r')
   end
 
   test 'kernel extension: returning' do
