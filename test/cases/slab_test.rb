@@ -136,6 +136,28 @@ class SlabTest < ActiveSupport::TestCase
     assert_equal "f\xF6\xF6b\xE4r".force_encoding('iso-8859-1'), 'fööbär'.to_iso
     assert_equal '50 ?'.force_encoding('iso-8859-1'), "50 €".to_iso
   end
+
+  test 'string extension: random' do
+    assert /\A\w+\z/.match(String.random(20))
+  end
+
+  test 'kernel extension: returning' do
+    s = ''
+    object_id = s.object_id
+    result = returning(s) { |arg| assert_equal object_id, arg.object_id; arg << 'foo'; false }
+    assert_equal 'foo', result
+    assert_equal 'foo', s
+  end
+
+  test 'object extension: metaclass' do
+    mc = class << self; self; end
+    assert_equal mc, self.metaclass
+    obj = Object.new
+    obj.meta_eval do
+      define_method(:foo) { 'foo!' }
+    end
+    assert_equal 'foo!', obj.foo
+  end
   
   private
   
